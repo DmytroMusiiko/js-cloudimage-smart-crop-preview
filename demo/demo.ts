@@ -142,15 +142,6 @@ function addDownloadButtons() {
   });
 }
 
-// Load button — clear object URL so we use the typed URL
-document.getElementById('load-btn')?.addEventListener('click', () => {
-  if (currentObjectURL) {
-    revokeObjectURL(currentObjectURL);
-    currentObjectURL = null;
-  }
-  init();
-});
-
 // Layout select
 document.getElementById('layout-select')?.addEventListener('change', (e) => {
   const layout = (e.target as HTMLSelectElement).value as 'grid' | 'single';
@@ -295,21 +286,8 @@ function getExportFormat(): 'png' | 'jpeg' | 'webp' {
 }
 
 function getExportQuality(): number {
-  return parseInt((document.getElementById('quality-slider') as HTMLInputElement).value, 10) / 100;
+  return 0.92;
 }
-
-// Quality slider display
-document.getElementById('quality-slider')?.addEventListener('input', (e) => {
-  const val = (e.target as HTMLInputElement).value;
-  document.getElementById('quality-value')!.textContent = `${val}%`;
-});
-
-// Toggle quality slider visibility (only for JPEG/WebP)
-document.getElementById('format-select')?.addEventListener('change', (e) => {
-  const format = (e.target as HTMLSelectElement).value;
-  const qualityGroup = document.getElementById('quality-group')!;
-  qualityGroup.style.opacity = format === 'png' ? '0.4' : '1';
-});
 
 // Per-preview download — double-click on preview cards
 document.getElementById('crop-viewer')?.addEventListener('dblclick', async (e) => {

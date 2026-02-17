@@ -41,8 +41,8 @@
       <div class="demo-section-inner">
         <div class="demo-hero-top">
           <div class="demo-hero-text">
-            <div class="demo-hero-badge">Open Source Library</div>
-            <h1>js-cloudimage-<span class="demo-gradient-text">smart-crop-preview</span></h1>
+            <div class="demo-hero-badge">js-cloudimage-smart-crop-preview</div>
+            <h1>Smart <span class="demo-gradient-text">Crop Preview</span></h1>
             <p class="demo-subtitle">Set a focal point and instantly preview how your image crops to any aspect ratio. Zero dependencies, under 10 KB gzipped.</p>
             <div class="demo-hero-actions">
               <a href="#getting-started" class="demo-btn demo-btn--glow">
@@ -62,8 +62,7 @@
           <div class="demo-toolbar-group">
             <input type="text" id="image-url"
               value="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80"
-              placeholder="Image URL..." class="demo-input" />
-            <button id="load-btn" class="demo-btn demo-btn--primary demo-btn--small">Load</button>
+              placeholder="Paste image URL and press Enter..." class="demo-input" />
             <button id="upload-btn" class="demo-btn demo-btn--outline demo-btn--small">Upload</button>
             <input type="file" id="file-input" accept="image/*" hidden />
           </div>
@@ -85,13 +84,9 @@
               <option value="jpeg">JPEG</option>
               <option value="webp">WebP</option>
             </select>
-            <div class="demo-toolbar-quality" id="quality-group">
-              <input type="range" id="quality-slider" min="10" max="100" value="92" class="demo-range" title="Quality" />
-              <span id="quality-value">92%</span>
-            </div>
             <button id="download-all-btn" class="demo-btn demo-btn--primary demo-btn--small">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              ZIP
+              Download All
             </button>
             <button id="reset-btn" class="demo-btn demo-btn--outline demo-btn--small">Reset</button>
           </div>
