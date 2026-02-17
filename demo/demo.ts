@@ -34,10 +34,87 @@ function init() {
     },
     onReady: () => {
       console.log('Smart Crop Preview ready!');
+      buildPresetBar();
+      addDownloadButtons();
     },
     onError: (err) => {
       console.error('Error:', err);
     },
+  });
+}
+
+// === Preset Filter Bar ===
+
+const activePresets = new Set(['landscape', 'square', 'portrait', 'social', 'og-image', 'banner']);
+
+function buildPresetBar() {
+  const bar = document.getElementById('preset-bar')!;
+  bar.innerHTML = '';
+
+  if (!cropper) return;
+  const presets = cropper.getPresets();
+
+  for (const preset of presets) {
+    const pill = document.createElement('button');
+    pill.className = 'demo-preset-pill' + (activePresets.has(preset.name) ? ' demo-preset-pill--active' : '');
+    pill.textContent = preset.label || preset.name;
+    pill.dataset.preset = preset.name;
+
+    pill.addEventListener('click', () => {
+      if (activePresets.has(preset.name)) {
+        if (activePresets.size <= 1) return; // keep at least 1
+        activePresets.delete(preset.name);
+        pill.classList.remove('demo-preset-pill--active');
+      } else {
+        activePresets.add(preset.name);
+        pill.classList.add('demo-preset-pill--active');
+      }
+      applyPresetFilter();
+    });
+
+    bar.appendChild(pill);
+  }
+}
+
+function applyPresetFilter() {
+  const cards = document.querySelectorAll<HTMLElement>('#crop-viewer [data-preset]');
+  cards.forEach((card) => {
+    const name = card.dataset.preset || '';
+    card.style.display = activePresets.has(name) ? '' : 'none';
+  });
+}
+
+// === Download Buttons on Preview Cards ===
+
+function addDownloadButtons() {
+  const cards = document.querySelectorAll<HTMLElement>('#crop-viewer [data-preset]');
+  cards.forEach((card) => {
+    const wrapper = card.querySelector('.ci-smart-crop__preview-image-wrapper');
+    if (!wrapper || wrapper.querySelector('.demo-card-download')) return;
+
+    const btn = document.createElement('button');
+    btn.className = 'demo-card-download';
+    btn.title = 'Download crop';
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const presetName = card.dataset.preset!;
+      if (!cropper) return;
+      try {
+        const blob = await cropper.exportCropBlob(presetName, getExportFormat(), getExportQuality());
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${presetName}.${getExportFormat()}`;
+        a.click();
+        URL.revokeObjectURL(url);
+      } catch (err) {
+        console.error('Download failed:', err);
+      }
+    });
+
+    wrapper.appendChild(btn);
   });
 }
 

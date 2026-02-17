@@ -373,6 +373,79 @@ a:hover {
 }
 
 /* ============================================================
+   Preset Filter Bar
+   ============================================================ */
+
+.demo-preset-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--sf-surface);
+  border: 1px solid var(--sf-border);
+  border-top: none;
+  border-bottom: none;
+}
+
+.demo-preset-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 1px solid var(--sf-border-strong);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--sf-text-muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--sf-transition);
+}
+
+.demo-preset-pill:hover {
+  border-color: var(--sf-accent);
+  color: var(--sf-accent);
+}
+
+.demo-preset-pill--active {
+  background: rgba(88, 166, 255, 0.15);
+  border-color: var(--sf-accent);
+  color: var(--sf-accent);
+}
+
+/* ============================================================
+   Preview Card Download Button
+   ============================================================ */
+
+.demo-card-download {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 150ms ease, background 150ms ease;
+  z-index: 2;
+}
+
+.ci-smart-crop__preview-card:hover .demo-card-download {
+  opacity: 1;
+}
+
+.demo-card-download:hover {
+  background: rgba(88, 166, 255, 0.8);
+}
+
+/* ============================================================
    Buttons
    ============================================================ */
 
