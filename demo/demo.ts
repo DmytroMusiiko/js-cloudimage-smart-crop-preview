@@ -424,6 +424,7 @@ document.getElementById('download-all-btn')?.addEventListener('click', async () 
   if (!cropper) return;
 
   const btn = document.getElementById('download-all-btn')!;
+  const btnOriginal = btn.innerHTML;
   btn.textContent = 'Generating...';
   btn.setAttribute('disabled', '');
 
@@ -454,7 +455,7 @@ document.getElementById('download-all-btn')?.addEventListener('click', async () 
   } catch (err) {
     console.error('ZIP download failed:', err);
   } finally {
-    btn.textContent = 'Download All (ZIP)';
+    btn.innerHTML = btnOriginal;
     btn.removeAttribute('disabled');
   }
 });
