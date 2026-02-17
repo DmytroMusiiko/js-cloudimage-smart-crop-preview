@@ -432,8 +432,13 @@ document.getElementById('download-all-btn')?.addEventListener('click', async () 
     const format = getExportFormat();
     const quality = getExportQuality();
     const files: { name: string; data: Uint8Array }[] = [];
+    const layout = getCurrentLayout();
 
     for (const preset of presets) {
+      // Only include selected presets
+      if (layout === 'grid' && !activePresets.has(preset.name)) continue;
+      if (layout === 'single' && preset.name !== singleActivePreset) continue;
+
       const blob = await cropper.exportCropBlob(preset.name, format, quality);
       const buffer = await blob.arrayBuffer();
       files.push({ name: `${preset.name}.${format}`, data: new Uint8Array(buffer) });
