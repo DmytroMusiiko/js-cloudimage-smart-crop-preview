@@ -20,7 +20,7 @@ Interactive focal-point-based image crop preview for multiple aspect ratios. Set
 - **Light & Dark Themes** — toggle themes with 40+ CSS custom properties for full customization
 - **Low Resolution Warning** — automatic badge when crop dimensions fall below 1080px
 - **React Wrapper** — first-class `<CISmartCropViewer>` component with ref API and hooks
-- **Accessible** — WCAG 2.1 AA compliant, full keyboard navigation, ARIA labels, `prefers-reduced-motion` support
+- **Accessible** — keyboard navigation, ARIA roles & labels, `prefers-reduced-motion` support
 - **Zero Dependencies** — no runtime dependencies, under 8 KB gzipped
 
 ---
