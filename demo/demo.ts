@@ -41,8 +41,14 @@ function init() {
   });
 }
 
-// Load button
-document.getElementById('load-btn')?.addEventListener('click', init);
+// Load button — clear object URL so we use the typed URL
+document.getElementById('load-btn')?.addEventListener('click', () => {
+  if (currentObjectURL) {
+    revokeObjectURL(currentObjectURL);
+    currentObjectURL = null;
+  }
+  init();
+});
 
 // Layout select
 document.getElementById('layout-select')?.addEventListener('change', (e) => {
@@ -98,7 +104,13 @@ document.getElementById('reset-btn')?.addEventListener('click', () => {
 
 // Enter key on URL input
 document.getElementById('image-url')?.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') init();
+  if (e.key === 'Enter') {
+    if (currentObjectURL) {
+      revokeObjectURL(currentObjectURL);
+      currentObjectURL = null;
+    }
+    init();
+  }
 });
 
 // === Image Upload ===

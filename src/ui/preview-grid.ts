@@ -194,7 +194,9 @@ export class PreviewGrid {
 
   setSrc(src: string): void {
     this.src = src;
-    // Previews will update via updateAll()
+    for (const [, preview] of this.previews) {
+      preview.setSrc(src);
+    }
   }
 
   destroy(): void {

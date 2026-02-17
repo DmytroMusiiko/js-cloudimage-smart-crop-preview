@@ -30,9 +30,9 @@
   --ci-smart-crop-overlay-transition: 150ms ease;
 
   --ci-smart-crop-image-width: 45%;
-  --ci-smart-crop-grid-min-col-width: 140px;
+  --ci-smart-crop-grid-columns: 3;
   --ci-smart-crop-grid-gap: 10px;
-  --ci-smart-crop-preview-height: auto;
+  --ci-smart-crop-preview-max-height: none;
 
   --ci-smart-crop-image-max-height: none;
 
@@ -57,7 +57,7 @@
   --ci-smart-crop-tab-color: #666666;
   --ci-smart-crop-tab-color-active: #ffffff;
   --ci-smart-crop-tab-border-radius: 20px;
-  --ci-smart-crop-tab-padding: 6px 14px;
+  --ci-smart-crop-tab-padding: 4px 10px;
 
   --ci-smart-crop-error-bg: #fff5f5;
   --ci-smart-crop-error-color: #e53e3e;
@@ -148,13 +148,18 @@
 }
 
 .ci-smart-crop__preview-grid--grid .ci-smart-crop__preview-grid-inner {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--ci-smart-crop-grid-min-col-width), 1fr));
-  gap: var(--ci-smart-crop-grid-gap);
+  columns: var(--ci-smart-crop-grid-columns);
+  column-gap: var(--ci-smart-crop-grid-gap);
 }
 
 .ci-smart-crop__preview-grid--single .ci-smart-crop__preview-grid-inner {
   display: block;
+  max-width: 50%;
+}
+
+/* === Preview Image Wrapper — cap tall aspect ratios === */
+.ci-smart-crop__preview-image-wrapper {
+  max-height: var(--ci-smart-crop-preview-max-height);
 }
 
 /* === Preview Card === */
@@ -166,13 +171,8 @@
   box-shadow: var(--ci-smart-crop-card-shadow);
   transition: box-shadow var(--ci-smart-crop-card-transition),
               transform var(--ci-smart-crop-card-transition);
-}
-
-/* Uniform preview height: when --ci-smart-crop-preview-height is set
-   to a fixed value (e.g. 140px), all preview image wrappers get the
-   same height, overriding per-preset aspect-ratio. */
-.ci-smart-crop__preview-image-wrapper {
-  height: var(--ci-smart-crop-preview-height);
+  break-inside: avoid;
+  margin-bottom: var(--ci-smart-crop-grid-gap);
 }
 
 .ci-smart-crop__preview-card:hover {
@@ -238,7 +238,7 @@
   border-radius: var(--ci-smart-crop-tab-border-radius);
   cursor: pointer;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   transition: all 150ms ease;
   outline: none;

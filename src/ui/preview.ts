@@ -34,6 +34,10 @@ export class CropPreview {
     this.dimensionsEl.style.display = show ? 'block' : 'none';
   }
 
+  setSrc(src: string): void {
+    this.img.src = src;
+  }
+
   constructor(options: CropPreviewOptions) {
     this.preset = options.preset;
 

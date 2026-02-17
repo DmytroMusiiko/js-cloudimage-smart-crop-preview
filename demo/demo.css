@@ -720,6 +720,8 @@ a:hover {
 }
 
 .demo-also-card {
+  display: flex;
+  flex-direction: column;
   background: var(--sf-surface);
   border: 1px solid var(--sf-border);
   border-radius: var(--sf-radius);
@@ -749,6 +751,7 @@ a:hover {
 .demo-also-actions {
   display: flex;
   gap: 10px;
+  margin-top: auto;
 }
 
 /* ============================================================

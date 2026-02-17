@@ -312,6 +312,7 @@ export class CISmartCrop {
       this.imageWidth = width;
       this.imageHeight = height;
       await this.focalPointPicker?.setSrc(src);
+      this.previewGrid?.setSrc(src);
       this.recalculateCrops();
       this.updateUI();
     } catch (err) {
