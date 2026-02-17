@@ -212,25 +212,29 @@ a:hover {
 }
 
 /* ============================================================
-   Hero
+   Hero (compact — text + toolbar + viewer on first screen)
    ============================================================ */
 
 .demo-hero {
-  padding-top: 100px;
-  padding-bottom: 80px;
-  text-align: center;
+  padding-top: 32px;
+  padding-bottom: 40px;
   background:
     radial-gradient(ellipse 80% 60% at 50% -20%, rgba(88, 166, 255, 0.12) 0%, transparent 70%),
     radial-gradient(ellipse 50% 40% at 80% 50%, rgba(188, 140, 255, 0.06) 0%, transparent 70%),
     var(--sf-bg);
 }
 
+.demo-hero-top {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
 .demo-hero h1 {
-  font-size: clamp(28px, 5vw, 48px);
+  font-size: clamp(22px, 3.5vw, 36px);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .demo-gradient-text {
@@ -241,59 +245,131 @@ a:hover {
 }
 
 .demo-subtitle {
-  font-size: clamp(15px, 2vw, 18px);
+  font-size: clamp(13px, 1.6vw, 15px);
   color: var(--sf-text-muted);
-  max-width: 600px;
-  margin: 0 auto 32px;
-  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto 16px;
+  line-height: 1.6;
 }
 
 .demo-hero-badge {
   display: inline-block;
-  padding: 6px 16px;
+  padding: 4px 12px;
   border-radius: 20px;
   background: rgba(63, 185, 80, 0.1);
   border: 1px solid rgba(63, 185, 80, 0.2);
   color: var(--sf-success);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .demo-hero-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 48px;
+  margin-bottom: 16px;
 }
 
 .demo-hero-meta {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  padding-top: 32px;
+  padding-top: 12px;
   border-top: 1px solid var(--sf-border);
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
 .demo-hero-meta span {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
-  color: var(--sf-text-muted);
+  color: var(--sf-text-subtle);
 }
 
-/* Hero viewer (showcase) */
-.demo-viewer--hero {
-  max-width: 900px;
-  margin: 0 auto 40px;
-  border-radius: var(--sf-radius);
-  overflow: hidden;
+/* ============================================================
+   Toolbar (inline controls above viewer)
+   ============================================================ */
+
+.demo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--sf-surface);
   border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius-sm) var(--sf-radius-sm) 0 0;
+  border-bottom: none;
+}
+
+.demo-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.demo-toolbar-group:not(:last-child)::after {
+  content: '';
+  width: 1px;
+  height: 20px;
+  background: var(--sf-border-strong);
+  margin-left: 4px;
+}
+
+.demo-toolbar-options {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.demo-toolbar-check {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sf-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.demo-toolbar-check input[type="checkbox"] {
+  accent-color: var(--sf-accent);
+}
+
+.demo-toolbar-quality {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.demo-toolbar-quality .demo-range {
+  width: 60px;
+  margin-top: 0;
+}
+
+.demo-toolbar-quality span {
+  font-size: 11px;
+  color: var(--sf-text-subtle);
+  min-width: 28px;
+}
+
+.demo-hero .demo-cfg-hint {
+  text-align: center;
+  margin-top: -4px;
+  margin-bottom: 0;
+}
+
+.demo-hero .demo-viewer-wrapper {
+  border: 1px solid var(--sf-border);
+  border-radius: 0 0 var(--sf-radius-sm) var(--sf-radius-sm);
+  overflow: hidden;
+  min-height: 200px;
 }
 
 /* ============================================================
@@ -493,75 +569,8 @@ a:hover {
 }
 
 /* ============================================================
-   Configurator
+   Shared layout helpers
    ============================================================ */
-
-.demo-configurator {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 24px;
-  align-items: start;
-}
-
-.demo-configurator-panel {
-  background: var(--sf-surface);
-  border: 1px solid var(--sf-border);
-  border-radius: var(--sf-radius);
-  padding: 24px;
-}
-
-.demo-configurator-panel h3 {
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--sf-text-muted);
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--sf-border);
-}
-
-.demo-configurator-panel h3:not(:first-child) {
-  margin-top: 20px;
-}
-
-.demo-configurator-preview {
-  position: sticky;
-  top: calc(var(--sf-nav-height) + 24px);
-}
-
-/* Config rows & fields */
-.demo-cfg-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.demo-cfg-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.demo-cfg-field {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.demo-cfg-field label {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--sf-text-muted);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-}
-
-.demo-cfg-field label input[type="checkbox"] {
-  accent-color: var(--sf-accent);
-}
 
 .demo-cfg-hint {
   font-size: 11px;
@@ -569,11 +578,19 @@ a:hover {
   margin-bottom: 4px;
 }
 
-.demo-cfg-actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 12px;
+.demo-card-desc {
+  font-size: 13px;
+  color: var(--sf-text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.demo-card-desc code {
+  padding: 1px 5px;
+  background: rgba(88, 166, 255, 0.1);
+  border-radius: 3px;
+  font-size: 12px;
+  color: var(--sf-accent);
 }
 
 /* ============================================================
@@ -795,16 +812,6 @@ a:hover {
    Responsive
    ============================================================ */
 
-@media (max-width: 1024px) {
-  .demo-configurator {
-    grid-template-columns: 1fr;
-  }
-
-  .demo-configurator-preview {
-    position: static;
-  }
-}
-
 @media (max-width: 768px) {
   :root {
     --sf-nav-height: 56px;
@@ -815,8 +822,8 @@ a:hover {
   }
 
   .demo-hero {
-    padding-top: 72px;
-    padding-bottom: 48px;
+    padding-top: 24px;
+    padding-bottom: 32px;
   }
 
   /* Nav responsive */
@@ -851,6 +858,19 @@ a:hover {
     margin-left: auto;
   }
 
+  /* Toolbar wraps */
+  .demo-toolbar {
+    padding: 8px 10px;
+  }
+
+  .demo-toolbar-group {
+    flex-wrap: wrap;
+  }
+
+  .demo-toolbar-group:not(:last-child)::after {
+    display: none;
+  }
+
   /* Grids → single column */
   .demo-grid {
     grid-template-columns: 1fr;
@@ -860,18 +880,6 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
-  .demo-cfg-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .demo-cfg-row {
-    flex-wrap: wrap;
-  }
-
-  .demo-cfg-row .demo-input {
-    min-width: 100%;
-  }
-
   /* Footer → stacked */
   .demo-footer-main {
     grid-template-columns: 1fr;
@@ -879,7 +887,7 @@ a:hover {
   }
 
   .demo-hero-meta {
-    gap: 16px;
+    gap: 12px;
   }
 
   .demo-section-header h2 {
@@ -899,19 +907,14 @@ a:hover {
 
 @media (max-width: 480px) {
   .demo-hero h1 {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .demo-also-title {
     font-size: 22px;
   }
 
-  .demo-cfg-actions {
-    flex-direction: column;
-  }
-
-  .demo-cfg-actions .demo-btn {
-    width: 100%;
-    justify-content: center;
+  .demo-toolbar {
+    gap: 6px;
   }
 }

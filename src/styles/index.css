@@ -29,8 +29,10 @@
   --ci-smart-crop-overlay-opacity-hover: 1;
   --ci-smart-crop-overlay-transition: 150ms ease;
 
-  --ci-smart-crop-grid-min-col-width: 200px;
+  --ci-smart-crop-grid-min-col-width: 160px;
   --ci-smart-crop-grid-gap: 12px;
+
+  --ci-smart-crop-image-max-height: none;
 
   --ci-smart-crop-card-bg: #f5f5f5;
   --ci-smart-crop-card-border: 1px solid #e0e0e0;
@@ -102,6 +104,7 @@
 .ci-smart-crop__image-area {
   flex: 0 0 60%;
   min-width: 0;
+  max-height: var(--ci-smart-crop-image-max-height);
   border-radius: var(--ci-smart-crop-image-border-radius);
   background: var(--ci-smart-crop-image-bg);
   overflow: hidden;
@@ -114,6 +117,8 @@
 
 .ci-smart-crop__image {
   border-radius: var(--ci-smart-crop-image-border-radius);
+  max-height: var(--ci-smart-crop-image-max-height);
+  object-fit: contain;
 }
 
 /* === Focal Point Marker === */

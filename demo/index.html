@@ -23,7 +23,7 @@
         <a href="#hero" class="active">Demo</a>
         <a href="#getting-started">Install</a>
         <a href="#features">Features</a>
-        <a href="#configurator">Configurator</a>
+        <a href="#embed">Embed</a>
         <a href="#export">Export</a>
       </div>
       <a href="https://github.com/scaleflex/js-cloudimage-smart-crop-preview" class="demo-nav-github" target="_blank" rel="noopener" aria-label="GitHub">
@@ -36,31 +36,79 @@
   </nav>
 
   <main>
-    <!-- Hero Section -->
+    <!-- Hero + Live Demo (compact) -->
     <section id="hero" class="demo-section demo-hero">
       <div class="demo-section-inner">
-        <div class="demo-hero-badge">Open Source Library</div>
-        <h1>js-cloudimage-<span class="demo-gradient-text">smart-crop-preview</span></h1>
-        <p class="demo-subtitle">Set a focal point and instantly preview how your image crops to any aspect ratio. Zero dependencies, under 10 KB gzipped.</p>
-        <div class="demo-hero-actions">
-          <a href="#getting-started" class="demo-btn demo-btn--glow">
-            Get Started
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <a href="https://github.com/scaleflex/js-cloudimage-smart-crop-preview" class="demo-btn demo-btn--glass" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            GitHub
-          </a>
+        <div class="demo-hero-top">
+          <div class="demo-hero-text">
+            <div class="demo-hero-badge">Open Source Library</div>
+            <h1>js-cloudimage-<span class="demo-gradient-text">smart-crop-preview</span></h1>
+            <p class="demo-subtitle">Set a focal point and instantly preview how your image crops to any aspect ratio. Zero dependencies, under 10 KB gzipped.</p>
+            <div class="demo-hero-actions">
+              <a href="#getting-started" class="demo-btn demo-btn--glow">
+                Get Started
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a href="https://github.com/scaleflex/js-cloudimage-smart-crop-preview" class="demo-btn demo-btn--glass" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+          <div class="demo-hero-meta">
+            <span>&lt;10 KB</span>
+            <span>Zero Dependencies</span>
+            <span>TypeScript</span>
+            <span>React</span>
+            <span>WCAG 2.1 AA</span>
+          </div>
         </div>
 
-        <div id="hero-viewer" class="demo-viewer demo-viewer--hero"></div>
+        <!-- Toolbar (inline controls) -->
+        <div class="demo-toolbar">
+          <div class="demo-toolbar-group">
+            <input type="text" id="image-url"
+              value="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80"
+              placeholder="Image URL..." class="demo-input" />
+            <button id="load-btn" class="demo-btn demo-btn--primary demo-btn--small">Load</button>
+            <button id="upload-btn" class="demo-btn demo-btn--outline demo-btn--small">Upload</button>
+            <input type="file" id="file-input" accept="image/*" hidden />
+          </div>
+          <div class="demo-toolbar-group demo-toolbar-options">
+            <select id="layout-select" class="demo-select" title="Layout">
+              <option value="grid">Grid</option>
+              <option value="single">Single</option>
+            </select>
+            <select id="theme-select" class="demo-select" title="Theme">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+            <label class="demo-toolbar-check"><input type="checkbox" id="overlay-toggle" checked /> Overlay</label>
+            <label class="demo-toolbar-check"><input type="checkbox" id="dimensions-toggle" checked /> Dims</label>
+          </div>
+          <div class="demo-toolbar-group">
+            <select id="format-select" class="demo-select" title="Export format">
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+              <option value="webp">WebP</option>
+            </select>
+            <div class="demo-toolbar-quality" id="quality-group">
+              <input type="range" id="quality-slider" min="10" max="100" value="92" class="demo-range" title="Quality" />
+              <span id="quality-value">92%</span>
+            </div>
+            <button id="download-all-btn" class="demo-btn demo-btn--primary demo-btn--small">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              ZIP
+            </button>
+            <button id="reset-btn" class="demo-btn demo-btn--outline demo-btn--small">Reset</button>
+          </div>
+        </div>
+        <div class="demo-cfg-hint">Drag &amp; drop image, paste from clipboard, or double-click a crop preview to download it</div>
 
-        <div class="demo-hero-meta">
-          <span>&lt;10 KB</span>
-          <span>Zero Dependencies</span>
-          <span>TypeScript</span>
-          <span>React</span>
-          <span>WCAG 2.1 AA</span>
+        <!-- Full-width viewer -->
+        <div id="crop-viewer-wrapper" class="demo-viewer-wrapper">
+          <div id="crop-viewer" style="--ci-smart-crop-image-max-height: 50vh;"></div>
+          <div id="drop-overlay" class="demo-drop-overlay">Drop image here</div>
         </div>
       </div>
     </section>
@@ -157,82 +205,80 @@ new CISmartCrop('#my-viewer', {
       </div>
     </section>
 
-    <!-- Interactive Configurator -->
-    <section id="configurator" class="demo-section demo-section--alt">
+    <!-- Embed in Your Project -->
+    <section id="embed" class="demo-section demo-section--alt">
       <div class="demo-section-inner">
         <div class="demo-section-header">
-          <div class="demo-section-label">Playground</div>
-          <h2>Interactive Configurator</h2>
-          <p>Upload an image or enter a URL, adjust settings, and preview crop results live.</p>
+          <div class="demo-section-label">Integration</div>
+          <h2>Embed in any project</h2>
+          <p>Add smart crop preview to your e-commerce admin, CMS, or any web application in minutes.</p>
         </div>
-        <div class="demo-configurator">
-          <!-- Controls Panel -->
-          <div class="demo-configurator-panel">
-            <h3>Image Source</h3>
-            <div class="demo-cfg-row">
-              <input type="text" id="image-url"
-                value="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80"
-                placeholder="Enter image URL..." class="demo-input" />
-              <button id="load-btn" class="demo-btn demo-btn--primary demo-btn--small">Load</button>
-              <button id="upload-btn" class="demo-btn demo-btn--outline demo-btn--small">Upload</button>
-              <input type="file" id="file-input" accept="image/*" hidden />
+        <div class="demo-columns">
+          <div class="demo-column demo-card">
+            <div class="demo-feature-header">
+              <div class="demo-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              </div>
+              <div class="demo-feature-title">E-Commerce / CMS</div>
             </div>
-            <div class="demo-cfg-hint">Or drag &amp; drop an image, or paste from clipboard (Ctrl+V)</div>
+            <p class="demo-card-desc">Product image editor with focal point — crop previews update live. Use <code>onChange</code> to save crop data to your backend, <code>exportCropBlob()</code> to generate thumbnails client-side.</p>
+            <div class="demo-code-wrap">
+              <pre><code class="language-javascript">const cropper = new CISmartCrop('#product-image', {
+  src: product.imageUrl,
+  presets: [
+    { name: 'card', ratio: '4:3', label: 'Product Card' },
+    { name: 'thumb', ratio: '1:1', label: 'Thumbnail' },
+    { name: 'banner', ratio: '21:9', label: 'Banner' },
+  ],
+  onChange: ({ focalPoint, crops }) => {
+    // Save to your API
+    fetch('/api/products/' + product.id + '/crops', {
+      method: 'POST',
+      body: JSON.stringify({ focalPoint, crops }),
+    });
+  },
+});
 
-            <h3>Options</h3>
-            <div class="demo-cfg-grid">
-              <div class="demo-cfg-field">
-                <label>Layout</label>
-                <select id="layout-select" class="demo-select">
-                  <option value="grid">Grid</option>
-                  <option value="single">Single</option>
-                </select>
-              </div>
-              <div class="demo-cfg-field">
-                <label>Theme</label>
-                <select id="theme-select" class="demo-select">
-                  <option value="light">Light</option>
-                  <option value="dark">Dark</option>
-                </select>
-              </div>
-              <div class="demo-cfg-field">
-                <label><input type="checkbox" id="overlay-toggle" checked /> Show Overlay</label>
-              </div>
-              <div class="demo-cfg-field">
-                <label><input type="checkbox" id="dimensions-toggle" checked /> Show Dimensions</label>
-              </div>
-            </div>
-
-            <h3>Download</h3>
-            <div class="demo-cfg-grid">
-              <div class="demo-cfg-field">
-                <label>Format</label>
-                <select id="format-select" class="demo-select">
-                  <option value="png">PNG</option>
-                  <option value="jpeg">JPEG</option>
-                  <option value="webp">WebP</option>
-                </select>
-              </div>
-              <div class="demo-cfg-field" id="quality-group">
-                <label>Quality: <span id="quality-value">92%</span></label>
-                <input type="range" id="quality-slider" min="10" max="100" value="92" class="demo-range" />
-              </div>
-            </div>
-            <div class="demo-cfg-actions">
-              <button id="download-all-btn" class="demo-btn demo-btn--primary demo-btn--small">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download All (ZIP)
-              </button>
-              <button id="reset-btn" class="demo-btn demo-btn--outline demo-btn--small">Reset Focal Point</button>
+// Download a specific crop
+const blob = await cropper.exportCropBlob('thumb', 'webp', 0.85);
+uploadToStorage(blob);</code></pre>
             </div>
           </div>
+          <div class="demo-column demo-card">
+            <div class="demo-feature-header">
+              <div class="demo-feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </div>
+              <div class="demo-feature-title">React Integration</div>
+            </div>
+            <p class="demo-card-desc">First-class React wrapper with props, refs, and hooks. Syncs with your component state automatically.</p>
+            <div class="demo-code-wrap demo-code-wrap--fill">
+              <pre><code class="language-jsx">import { CISmartCropViewer } from
+  'js-cloudimage-smart-crop-preview/react';
+import 'js-cloudimage-smart-crop-preview/css';
 
-          <!-- Preview Panel -->
-          <div class="demo-configurator-panel demo-configurator-preview">
-            <h3>Preview</h3>
-            <div id="crop-viewer-wrapper" class="demo-viewer-wrapper">
-              <div id="crop-viewer"></div>
-              <div id="drop-overlay" class="demo-drop-overlay">Drop image here</div>
+function ProductEditor({ imageUrl }) {
+  const viewerRef = useRef(null);
+
+  const handleSave = async () => {
+    const crops = viewerRef.current.getCrops();
+    const blob = await viewerRef.current
+      .exportCropBlob('thumb', 'webp');
+    await uploadCrops(crops, blob);
+  };
+
+  return (
+    &lt;CISmartCropViewer
+      ref={viewerRef}
+      src={imageUrl}
+      presets={[
+        { name: 'card', ratio: '4:3' },
+        { name: 'thumb', ratio: '1:1' },
+      ]}
+      onChange={({ crops }) =&gt; console.log(crops)}
+    /&gt;
+  );
+}</code></pre>
             </div>
           </div>
         </div>

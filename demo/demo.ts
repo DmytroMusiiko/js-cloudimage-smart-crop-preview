@@ -379,28 +379,5 @@ function updateActiveNav() {
 
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 
-// === Hero Viewer (showcase) ===
-
-let heroViewer: CISmartCrop | null = null;
-
-function initHero() {
-  const heroEl = document.getElementById('hero-viewer');
-  if (!heroEl) return;
-
-  heroViewer = new CISmartCrop(heroEl, {
-    src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80',
-    presets: [
-      { name: 'landscape', ratio: '16:9', label: 'Landscape 16:9' },
-      { name: 'square', ratio: '1:1', label: 'Square 1:1' },
-      { name: 'portrait', ratio: '9:16', label: 'Portrait 9:16' },
-    ],
-    layout: 'grid',
-    theme: 'dark',
-    showOverlay: true,
-    showDimensions: true,
-  });
-}
-
-// Initialize both viewers on load
-initHero();
+// Initialize on load
 init();
