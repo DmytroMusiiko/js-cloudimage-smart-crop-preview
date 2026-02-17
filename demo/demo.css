@@ -712,25 +712,43 @@ a:hover {
   text-align: center;
 }
 
+.demo-also-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: left;
+}
+
+.demo-also-card {
+  background: var(--sf-surface);
+  border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius);
+  padding: 24px;
+  transition: border-color var(--sf-transition), box-shadow var(--sf-transition);
+}
+
+.demo-also-card:hover {
+  border-color: var(--sf-border-strong);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
 .demo-also-title {
-  font-size: 28px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .demo-also-desc {
-  font-size: 15px;
+  font-size: 13px;
   color: var(--sf-text-muted);
-  max-width: 540px;
-  margin: 0 auto 24px;
-  line-height: 1.7;
+  margin-bottom: 16px;
+  line-height: 1.6;
 }
 
 .demo-also-actions {
   display: flex;
-  gap: 12px;
-  justify-content: center;
+  gap: 8px;
 }
 
 /* ============================================================
@@ -877,6 +895,10 @@ a:hover {
   }
 
   .demo-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-also-grid {
     grid-template-columns: 1fr;
   }
 
