@@ -43,9 +43,14 @@ function init() {
   });
 }
 
-// === Preset Filter Bar ===
+// === Preset Filter Bar (unified for grid + single) ===
 
 const activePresets = new Set(['landscape', 'square', 'portrait', 'social', 'og-image', 'banner']);
+let singleActivePreset = 'landscape';
+
+function getCurrentLayout(): 'grid' | 'single' {
+  return (document.getElementById('layout-select') as HTMLSelectElement).value as 'grid' | 'single';
+}
 
 function buildPresetBar() {
   const bar = document.getElementById('preset-bar')!;
@@ -53,20 +58,34 @@ function buildPresetBar() {
 
   if (!cropper) return;
   const presets = cropper.getPresets();
+  const layout = getCurrentLayout();
 
   for (const preset of presets) {
     const pill = document.createElement('button');
-    pill.className = 'demo-preset-pill' + (activePresets.has(preset.name) ? ' demo-preset-pill--active' : '');
-    pill.textContent = preset.label || preset.name;
     pill.dataset.preset = preset.name;
+    pill.textContent = preset.label || preset.name;
+
+    if (layout === 'grid') {
+      pill.className = 'demo-preset-pill' + (activePresets.has(preset.name) ? ' demo-preset-pill--active' : '');
+    } else {
+      pill.className = 'demo-preset-pill' + (singleActivePreset === preset.name ? ' demo-preset-pill--active' : '');
+    }
 
     pill.addEventListener('click', () => {
-      if (activePresets.has(preset.name)) {
-        if (activePresets.size <= 1) return; // keep at least 1
-        activePresets.delete(preset.name);
-        pill.classList.remove('demo-preset-pill--active');
+      if (layout === 'grid') {
+        // Grid: toggle on/off
+        if (activePresets.has(preset.name)) {
+          if (activePresets.size <= 1) return;
+          activePresets.delete(preset.name);
+          pill.classList.remove('demo-preset-pill--active');
+        } else {
+          activePresets.add(preset.name);
+          pill.classList.add('demo-preset-pill--active');
+        }
       } else {
-        activePresets.add(preset.name);
+        // Single: select one
+        singleActivePreset = preset.name;
+        bar.querySelectorAll('.demo-preset-pill').forEach((p) => p.classList.remove('demo-preset-pill--active'));
         pill.classList.add('demo-preset-pill--active');
       }
       applyPresetFilter();
@@ -77,10 +96,15 @@ function buildPresetBar() {
 }
 
 function applyPresetFilter() {
+  const layout = getCurrentLayout();
   const cards = document.querySelectorAll<HTMLElement>('#crop-viewer [data-preset]');
   cards.forEach((card) => {
     const name = card.dataset.preset || '';
-    card.style.display = activePresets.has(name) ? '' : 'none';
+    if (layout === 'grid') {
+      card.style.display = activePresets.has(name) ? '' : 'none';
+    } else {
+      card.style.display = name === singleActivePreset ? '' : 'none';
+    }
   });
 }
 
@@ -129,7 +153,10 @@ document.getElementById('load-btn')?.addEventListener('click', () => {
 
 // Layout select
 document.getElementById('layout-select')?.addEventListener('change', (e) => {
-  cropper?.setLayout((e.target as HTMLSelectElement).value as 'grid' | 'single');
+  const layout = (e.target as HTMLSelectElement).value as 'grid' | 'single';
+  cropper?.setLayout(layout);
+  buildPresetBar();
+  applyPresetFilter();
 });
 
 // Theme select

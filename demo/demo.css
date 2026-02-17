@@ -376,6 +376,11 @@ a:hover {
    Preset Filter Bar
    ============================================================ */
 
+/* Hide library built-in tabs — we use demo preset bar instead */
+#crop-viewer .ci-smart-crop__tabs {
+  display: none !important;
+}
+
 .demo-preset-bar {
   display: flex;
   flex-wrap: wrap;
