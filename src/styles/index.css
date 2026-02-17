@@ -29,8 +29,9 @@
   --ci-smart-crop-overlay-opacity-hover: 1;
   --ci-smart-crop-overlay-transition: 150ms ease;
 
-  --ci-smart-crop-grid-min-col-width: 160px;
-  --ci-smart-crop-grid-gap: 12px;
+  --ci-smart-crop-image-width: 45%;
+  --ci-smart-crop-grid-min-col-width: 140px;
+  --ci-smart-crop-grid-gap: 10px;
 
   --ci-smart-crop-image-max-height: none;
 
@@ -45,7 +46,7 @@
   --ci-smart-crop-label-color: #333333;
   --ci-smart-crop-label-font-size: 13px;
   --ci-smart-crop-label-font-weight: 600;
-  --ci-smart-crop-label-padding: 8px 12px;
+  --ci-smart-crop-label-padding: 6px 10px;
 
   --ci-smart-crop-dimensions-color: #999999;
   --ci-smart-crop-dimensions-font-size: 11px;
@@ -62,6 +63,7 @@
   --ci-smart-crop-error-icon-size: 48px;
 
   display: flex;
+  align-items: start;
   gap: var(--ci-smart-crop-gap);
   padding: var(--ci-smart-crop-padding);
   background: var(--ci-smart-crop-bg);
@@ -102,7 +104,7 @@
 
 /* === Image Area === */
 .ci-smart-crop__image-area {
-  flex: 0 0 60%;
+  flex: 0 0 var(--ci-smart-crop-image-width);
   min-width: 0;
   max-height: var(--ci-smart-crop-image-max-height);
   border-radius: var(--ci-smart-crop-image-border-radius);

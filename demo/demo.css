@@ -723,7 +723,7 @@ a:hover {
   background: var(--sf-surface);
   border: 1px solid var(--sf-border);
   border-radius: var(--sf-radius);
-  padding: 24px;
+  padding: 28px;
   transition: border-color var(--sf-transition), box-shadow var(--sf-transition);
 }
 
@@ -733,22 +733,22 @@ a:hover {
 }
 
 .demo-also-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .demo-also-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--sf-text-muted);
-  margin-bottom: 16px;
-  line-height: 1.6;
+  margin-bottom: 20px;
+  line-height: 1.7;
 }
 
 .demo-also-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 /* ============================================================
