@@ -391,5 +391,29 @@ function updateActiveNav() {
 
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 
+// === Code Copy Buttons ===
+
+document.querySelectorAll('.demo-code-wrap').forEach((wrap) => {
+  const btn = document.createElement('button');
+  btn.className = 'demo-code-copy';
+  btn.title = 'Copy to clipboard';
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+
+  btn.addEventListener('click', () => {
+    const code = wrap.querySelector('code');
+    if (!code) return;
+    navigator.clipboard.writeText(code.textContent || '').then(() => {
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      btn.classList.add('demo-code-copy--done');
+      setTimeout(() => {
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+        btn.classList.remove('demo-code-copy--done');
+      }, 2000);
+    });
+  });
+
+  wrap.appendChild(btn);
+});
+
 // Initialize on load
 init();

@@ -539,11 +539,44 @@ a:hover {
    ============================================================ */
 
 .demo-code-wrap {
+  position: relative;
   background: #0d1117;
   border: 1px solid var(--sf-border);
   border-radius: var(--sf-radius-sm);
   overflow: hidden;
   margin-bottom: 12px;
+}
+
+.demo-code-copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--sf-text-subtle);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--sf-transition), background var(--sf-transition), color var(--sf-transition);
+  z-index: 2;
+}
+
+.demo-code-wrap:hover .demo-code-copy {
+  opacity: 1;
+}
+
+.demo-code-copy:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--sf-text);
+}
+
+.demo-code-copy--done {
+  color: var(--sf-success);
 }
 
 .demo-code-wrap:last-child {
