@@ -2,15 +2,38 @@
  * Load an image and return its natural dimensions.
  */
 export function loadImage(src: string): Promise<{ img: HTMLImageElement; width: number; height: number }> {
+  const isLocal = src.startsWith('data:') || src.startsWith('blob:');
+
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.crossOrigin = 'anonymous';
+
+    // Try with CORS first for cross-origin URLs (needed for canvas export).
+    // Local sources (blob/data URI) never need it.
+    if (!isLocal) {
+      img.crossOrigin = 'anonymous';
+    }
+
     img.onload = () => {
       resolve({ img, width: img.naturalWidth, height: img.naturalHeight });
     };
+
     img.onerror = () => {
+      // If CORS load failed, retry without crossOrigin so the image at
+      // least displays (canvas export will be unavailable for this URL).
+      if (img.crossOrigin !== null) {
+        const retry = new Image();
+        retry.onload = () => {
+          resolve({ img: retry, width: retry.naturalWidth, height: retry.naturalHeight });
+        };
+        retry.onerror = () => {
+          reject(new Error(`Failed to load image: ${src}`));
+        };
+        retry.src = src;
+        return;
+      }
       reject(new Error(`Failed to load image: ${src}`));
     };
+
     img.src = src;
   });
 }
