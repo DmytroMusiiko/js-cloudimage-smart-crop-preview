@@ -32,6 +32,7 @@
   --ci-smart-crop-image-width: 45%;
   --ci-smart-crop-grid-min-col-width: 140px;
   --ci-smart-crop-grid-gap: 10px;
+  --ci-smart-crop-preview-height: auto;
 
   --ci-smart-crop-image-max-height: none;
 
@@ -165,6 +166,13 @@
   box-shadow: var(--ci-smart-crop-card-shadow);
   transition: box-shadow var(--ci-smart-crop-card-transition),
               transform var(--ci-smart-crop-card-transition);
+}
+
+/* Uniform preview height: when --ci-smart-crop-preview-height is set
+   to a fixed value (e.g. 140px), all preview image wrappers get the
+   same height, overriding per-preset aspect-ratio. */
+.ci-smart-crop__preview-image-wrapper {
+  height: var(--ci-smart-crop-preview-height);
 }
 
 .ci-smart-crop__preview-card:hover {
