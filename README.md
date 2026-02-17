@@ -193,7 +193,14 @@ const blob = await cropper.exportCropBlob('square', 'webp', 0.85);
 #### Update & Destroy
 
 ```js
-cropper.update({ showOverlay: false, showDimensions: false });
+// Update multiple options at once
+cropper.update({
+  showOverlay: false,
+  showDimensions: false,
+  layout: 'single',
+  theme: 'dark',
+});
+
 cropper.destroy();   // Clean up DOM and observers
 ```
 
@@ -266,7 +273,7 @@ All [configuration options](#configuration) are supported as props, plus:
 
 ### Ref API
 
-The ref exposes the full [instance API](#instance-methods): `setFocalPoint`, `getFocalPoint`, `getCrops`, `getCrop`, `addPreset`, `removePreset`, `getPresets`, `setLayout`, `setTheme`, `setSrc`, `exportJSON`, `exportCropBlob`.
+The ref exposes the full [instance API](#instance-methods): `setFocalPoint`, `getFocalPoint`, `getCrops`, `getCrop`, `addPreset`, `removePreset`, `getPresets`, `setLayout`, `setTheme`, `setSrc`, `update`, `exportJSON`, `exportCropBlob`.
 
 ### Hook
 

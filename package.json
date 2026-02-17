@@ -16,7 +16,7 @@
       "types": "./dist/react/index.d.ts",
       "import": "./dist/react/index.mjs"
     },
-    "./css": "./dist/index.css"
+    "./css": "./dist/js-cloudimage-smart-crop-preview.css"
   },
   "files": [
     "dist"
