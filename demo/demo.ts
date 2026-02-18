@@ -210,9 +210,12 @@ document.getElementById('reset-btn')?.addEventListener('click', () => {
   cropper?.setFocalPoint({ x: 50, y: 50 });
 });
 
-// Enter key on URL input
+// Enter key on URL input — only reload if user typed a real URL
 document.getElementById('image-url')?.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
+    const value = (e.target as HTMLInputElement).value.trim();
+    // Ignore if input looks like a bare filename (from upload), not a URL
+    if (!value || (!value.includes('://') && !value.startsWith('data:'))) return;
     if (currentObjectURL) {
       revokeObjectURL(currentObjectURL);
       currentObjectURL = null;
@@ -235,11 +238,7 @@ function loadFile(file: File) {
   const urlInput = document.getElementById('image-url') as HTMLInputElement;
   urlInput.value = file.name;
 
-  if (cropper) {
-    cropper.setSrc(currentObjectURL);
-  } else {
-    init();
-  }
+  init();
 }
 
 // Upload button → file picker
