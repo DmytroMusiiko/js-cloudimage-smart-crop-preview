@@ -53,17 +53,30 @@ function getCurrentLayout(): 'grid' | 'single' {
 }
 
 function buildPresetBar() {
+  // Always hide the toolbar preset bar — pills live inside preview-grid-inner now
   const bar = document.getElementById('preset-bar')!;
   bar.innerHTML = '';
+  bar.style.display = 'none';
+
+  // Remove previous inner bar
+  document.querySelector('.demo-preset-bar--inner')?.remove();
 
   if (!cropper) return;
   const presets = cropper.getPresets();
   const layout = getCurrentLayout();
 
+  const gridEl = document.querySelector('#crop-viewer .ci-smart-crop__preview-grid');
+  const gridInner = document.querySelector('#crop-viewer .ci-smart-crop__preview-grid-inner');
+  if (!gridEl || !gridInner) return;
+
+  const innerBar = document.createElement('div');
+  innerBar.className = 'demo-preset-bar demo-preset-bar--inner';
+  gridEl.insertBefore(innerBar, gridInner);
+
   for (const preset of presets) {
     const pill = document.createElement('button');
-    pill.dataset.preset = preset.name;
     pill.textContent = preset.label || preset.name;
+    pill.dataset.presetPill = preset.name;
 
     if (layout === 'grid') {
       pill.className = 'demo-preset-pill' + (activePresets.has(preset.name) ? ' demo-preset-pill--active' : '');
@@ -73,7 +86,7 @@ function buildPresetBar() {
 
     pill.addEventListener('click', () => {
       if (layout === 'grid') {
-        // Grid: toggle on/off
+        // Mosaic: toggle on/off
         if (activePresets.has(preset.name)) {
           if (activePresets.size <= 1) return;
           activePresets.delete(preset.name);
@@ -85,19 +98,19 @@ function buildPresetBar() {
       } else {
         // Single: select one
         singleActivePreset = preset.name;
-        bar.querySelectorAll('.demo-preset-pill').forEach((p) => p.classList.remove('demo-preset-pill--active'));
+        innerBar.querySelectorAll('.demo-preset-pill').forEach((p) => p.classList.remove('demo-preset-pill--active'));
         pill.classList.add('demo-preset-pill--active');
       }
       applyPresetFilter();
     });
 
-    bar.appendChild(pill);
+    innerBar.appendChild(pill);
   }
 }
 
 function applyPresetFilter() {
   const layout = getCurrentLayout();
-  const cards = document.querySelectorAll<HTMLElement>('#crop-viewer [data-preset]');
+  const cards = document.querySelectorAll<HTMLElement>('#crop-viewer .ci-smart-crop__preview-card');
   cards.forEach((card) => {
     const name = card.dataset.preset || '';
     if (layout === 'grid') {

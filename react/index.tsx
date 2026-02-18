@@ -86,8 +86,7 @@ export const CISmartCropViewer = forwardRef<CISmartCropViewerRef, CISmartCropVie
         instanceRef.current?.destroy();
         instanceRef.current = null;
       };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+      }, []);
 
     // Sync src
     useEffect(() => {

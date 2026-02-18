@@ -38,7 +38,6 @@ export function useCISmartCrop(config: CISmartCropConfig): UseCISmartCropReturn 
       instanceRef.current = null;
       setIsReady(false);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config.src]);
 
   return {

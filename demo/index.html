@@ -1,129 +1,239 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>js-cloudimage-smart-crop-preview — Interactive Focal Point Crop Preview</title>
-  <link rel="icon" href="https://cdn.prod.website-files.com/623086c828f7c9787009cf20/6267d5ef7488f536294d267b_favicon-256x526.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./demo.css" />
-</head>
-<body>
-
-  <!-- Nav -->
-  <nav class="demo-nav" id="demo-nav">
-    <div class="demo-nav-inner">
-      <a href="https://www.scaleflex.com" class="demo-logo" target="_blank" rel="noopener">
-        <img src="https://assets.scaleflex.com/Marketing/Logos/Scaleflex%20Logos/Logo%20Horizontal/scaleflex%20logo%20without%20tagline%20white%20text%20%28horizontal%29%20.png?vh=85bc00" alt="Scaleflex" class="demo-logo-img">
-      </a>
-      <div class="demo-nav-links">
-        <a href="#hero" class="active">Demo</a>
-        <a href="#getting-started">Install</a>
-        <a href="#features">Features</a>
-        <a href="#embed">Embed</a>
-        <a href="#export">Export</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js-cloudimage-smart-crop-preview — Interactive Focal Point Crop Preview</title>
+    <link
+      rel="icon"
+      href="https://cdn.prod.website-files.com/623086c828f7c9787009cf20/6267d5ef7488f536294d267b_favicon-256x526.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./demo.css" />
+  </head>
+  <body>
+    <!-- Nav -->
+    <nav class="demo-nav" id="demo-nav">
+      <div class="demo-nav-inner">
+        <a href="https://www.scaleflex.com" class="demo-logo" target="_blank" rel="noopener">
+          <img
+            src="https://assets.scaleflex.com/Marketing/Logos/Scaleflex%20Logos/Logo%20Horizontal/scaleflex%20logo%20without%20tagline%20white%20text%20%28horizontal%29%20.png?vh=85bc00"
+            alt="Scaleflex"
+            class="demo-logo-img"
+          />
+        </a>
+        <div class="demo-nav-links">
+          <a href="#hero" class="active">Demo</a>
+          <a href="#getting-started">Install</a>
+          <a href="#features">Features</a>
+          <a href="#embed">Embed</a>
+          <a href="#export">Export</a>
+        </div>
+        <a
+          href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview"
+          class="demo-nav-github"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+        >
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+            />
+          </svg>
+        </a>
+        <button class="demo-nav-burger" id="nav-burger" aria-label="Toggle menu">
+          <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
       </div>
-      <a href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview" class="demo-nav-github" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      </a>
-      <button class="demo-nav-burger" id="nav-burger" aria-label="Toggle menu">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-  </nav>
+    </nav>
 
-  <main>
-    <!-- Hero + Live Demo (compact) -->
-    <section id="hero" class="demo-section demo-hero">
-      <div class="demo-section-inner">
-        <div class="demo-hero-top">
-          <div class="demo-hero-text">
-            <div class="demo-hero-badge">js-cloudimage-smart-crop-preview</div>
-            <h1>Smart <span class="demo-gradient-text">Crop Preview</span></h1>
-            <p class="demo-subtitle">Set a focal point and instantly preview how your image crops to any aspect ratio. Zero dependencies, under 10 KB gzipped.</p>
-            <div class="demo-hero-actions">
-              <a href="#getting-started" class="demo-btn demo-btn--glow">
-                Get Started
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </a>
-              <a href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview" class="demo-btn demo-btn--glass" target="_blank" rel="noopener">
-                <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Toolbar (inline controls) -->
-        <div class="demo-toolbar">
-          <div class="demo-toolbar-group">
-            <input type="text" id="image-url"
-              value="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80"
-              placeholder="Paste image URL and press Enter..." class="demo-input" />
-            <button id="upload-btn" class="demo-btn demo-btn--primary demo-btn--small">Upload</button>
-            <input type="file" id="file-input" accept="image/*" hidden />
-          </div>
-          <div class="demo-toolbar-group demo-toolbar-options">
-            <select id="layout-select" class="demo-select" title="Layout">
-              <option value="grid">Grid</option>
-              <option value="single">Single</option>
-            </select>
-            <select id="theme-select" class="demo-select" title="Theme">
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-            </select>
-            <label class="demo-toolbar-check"><input type="checkbox" id="overlay-toggle" checked /> Overlay</label>
-            <label class="demo-toolbar-check"><input type="checkbox" id="dimensions-toggle" checked /> Dims</label>
-          </div>
-          <div class="demo-toolbar-group">
-            <select id="format-select" class="demo-select" title="Export format">
-              <option value="png">PNG</option>
-              <option value="jpeg">JPEG</option>
-              <option value="webp">WebP</option>
-            </select>
-            <button id="download-all-btn" class="demo-btn demo-btn--primary demo-btn--small">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download All
-            </button>
-            <button id="reset-btn" class="demo-btn demo-btn--outline demo-btn--small">Reset</button>
-          </div>
-        </div>
-        <!-- Preset filter pills -->
-        <div class="demo-preset-bar" id="preset-bar"></div>
-        <!-- Full-width viewer -->
-        <div id="crop-viewer-wrapper" class="demo-viewer-wrapper">
-          <div id="crop-viewer" style="--ci-smart-crop-image-max-height: 50vh; --ci-smart-crop-image-width: 65%; --ci-smart-crop-grid-columns: 3; --ci-smart-crop-preview-max-height: 180px;"></div>
-          <div id="drop-overlay" class="demo-drop-overlay">Drop image here</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Getting Started -->
-    <section id="getting-started" class="demo-section demo-section--light-alt">
-      <div class="demo-section-inner">
-        <div class="demo-section-header">
-          <div class="demo-section-label">Quick Start</div>
-          <h2>Up and running in under a minute</h2>
-          <p>Install from npm or load from CDN — choose the method that fits your workflow.</p>
-        </div>
-        <div class="demo-columns">
-          <div class="demo-column demo-card">
-            <div class="demo-feature-header">
-              <div class="demo-feature-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16V7a2 2 0 00-2-2H6a2 2 0 00-2 2v9m16 0H4m16 0l1.28 2.55a1 1 0 01-.9 1.45H3.62a1 1 0 01-.9-1.45L4 16"/></svg>
+    <main>
+      <!-- Hero + Live Demo (compact) -->
+      <section id="hero" class="demo-section demo-hero">
+        <div class="demo-section-inner">
+          <div class="demo-hero-top">
+            <div class="demo-hero-text">
+              <div class="demo-hero-badge">js-cloudimage-smart-crop-preview</div>
+              <h1>Smart <span class="demo-gradient-text">Crop Preview</span></h1>
+              <p class="demo-subtitle">
+                Set a focal point and instantly preview how your image crops to any aspect ratio.
+                Zero dependencies, under 10 KB gzipped.
+              </p>
+              <div class="demo-hero-actions">
+                <a href="#getting-started" class="demo-btn demo-btn--glow">
+                  Get Started
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview"
+                  class="demo-btn demo-btn--glass"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                    <path
+                      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                    />
+                  </svg>
+                  GitHub
+                </a>
               </div>
-              <div class="demo-feature-title">Install via npm</div>
             </div>
-            <div class="demo-code-wrap">
-              <div class="demo-code-header"><span class="demo-code-dots"><i></i><i></i><i></i></span><span class="demo-code-lang">Terminal</span></div>
-              <pre><code class="language-bash">npm install js-cloudimage-smart-crop-preview</code></pre>
+          </div>
+
+          <!-- Toolbar (inline controls) -->
+          <div class="demo-toolbar">
+            <div class="demo-toolbar-group">
+              <input
+                type="text"
+                id="image-url"
+                value="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80"
+                placeholder="Paste image or URL..."
+                class="demo-input"
+              />
+              <button id="upload-btn" class="demo-btn demo-btn--primary demo-btn--small">
+                Upload
+              </button>
+              <input type="file" id="file-input" accept="image/*" hidden />
             </div>
-            <div class="demo-code-wrap demo-code-wrap--fill">
-              <div class="demo-code-header"><span class="demo-code-dots"><i></i><i></i><i></i></span><span class="demo-code-lang">JavaScript</span></div>
-              <pre><code class="language-javascript">import { CISmartCrop } from 'js-cloudimage-smart-crop-preview';
+            <div class="demo-toolbar-group demo-toolbar-options">
+              <select id="layout-select" class="demo-select" title="Layout">
+                <option value="grid">Mosaic</option>
+                <option value="single">Single</option>
+              </select>
+              <select id="theme-select" class="demo-select" title="Theme">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+              <label class="demo-toolbar-check"
+                ><input type="checkbox" id="overlay-toggle" checked /> Overlay</label
+              >
+              <label class="demo-toolbar-check"
+                ><input type="checkbox" id="dimensions-toggle" checked /> Dims</label
+              >
+            </div>
+            <div class="demo-toolbar-group">
+              <select id="format-select" class="demo-select" title="Export format">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="webp">WebP</option>
+              </select>
+              <button id="download-all-btn" class="demo-btn demo-btn--primary demo-btn--small">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Download All
+              </button>
+              <button id="reset-btn" class="demo-btn demo-btn--outline demo-btn--small">
+                Reset
+              </button>
+            </div>
+          </div>
+          <!-- Preset filter pills -->
+          <div class="demo-preset-bar" id="preset-bar"></div>
+          <!-- Full-width viewer -->
+          <div id="crop-viewer-wrapper" class="demo-viewer-wrapper">
+            <div
+              id="crop-viewer"
+              style="
+                --ci-smart-crop-image-max-height: 50vh;
+                --ci-smart-crop-image-width: 65%;
+                --ci-smart-crop-grid-columns: 3;
+                --ci-smart-crop-preview-max-height: 180px;
+              "
+            ></div>
+            <div id="drop-overlay" class="demo-drop-overlay">Drop image here</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Getting Started -->
+      <section id="getting-started" class="demo-section demo-section--light-alt">
+        <div class="demo-section-inner">
+          <div class="demo-section-header">
+            <div class="demo-section-label">Quick Start</div>
+            <h2>Up and running in under a minute</h2>
+            <p>Install from npm or load from CDN — choose the method that fits your workflow.</p>
+          </div>
+          <div class="demo-columns">
+            <div class="demo-column demo-card">
+              <div class="demo-feature-header">
+                <div class="demo-feature-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M20 16V7a2 2 0 00-2-2H6a2 2 0 00-2 2v9m16 0H4m16 0l1.28 2.55a1 1 0 01-.9 1.45H3.62a1 1 0 01-.9-1.45L4 16"
+                    />
+                  </svg>
+                </div>
+                <div class="demo-feature-title">Install via npm</div>
+              </div>
+              <div class="demo-code-wrap">
+                <div class="demo-code-header">
+                  <span class="demo-code-dots"><i></i><i></i><i></i></span
+                  ><span class="demo-code-lang">Terminal</span>
+                </div>
+                <pre><code class="language-bash">npm install js-cloudimage-smart-crop-preview</code></pre>
+              </div>
+              <div class="demo-code-wrap demo-code-wrap--fill">
+                <div class="demo-code-header">
+                  <span class="demo-code-dots"><i></i><i></i><i></i></span
+                  ><span class="demo-code-lang">JavaScript</span>
+                </div>
+                <pre><code class="language-javascript">import { CISmartCrop } from 'js-cloudimage-smart-crop-preview';
 import 'js-cloudimage-smart-crop-preview/css';
 
 new CISmartCrop('#my-viewer', {
@@ -134,18 +244,34 @@ new CISmartCrop('#my-viewer', {
     { name: 'portrait', ratio: '9:16' },
   ],
 });</code></pre>
-            </div>
-          </div>
-          <div class="demo-column demo-card">
-            <div class="demo-feature-header">
-              <div class="demo-feature-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
               </div>
-              <div class="demo-feature-title">Use via CDN</div>
             </div>
-            <div class="demo-code-wrap demo-code-wrap--fill">
-              <div class="demo-code-header"><span class="demo-code-dots"><i></i><i></i><i></i></span><span class="demo-code-lang">HTML</span></div>
-              <pre><code class="language-html">&lt;link rel="stylesheet"
+            <div class="demo-column demo-card">
+              <div class="demo-feature-header">
+                <div class="demo-feature-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"
+                    />
+                  </svg>
+                </div>
+                <div class="demo-feature-title">Use via CDN</div>
+              </div>
+              <div class="demo-code-wrap demo-code-wrap--fill">
+                <div class="demo-code-header">
+                  <span class="demo-code-dots"><i></i><i></i><i></i></span
+                  ><span class="demo-code-lang">HTML</span>
+                </div>
+                <pre><code class="language-html">&lt;link rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/
   js-cloudimage-smart-crop-preview/
   dist/index.css"&gt;
@@ -158,69 +284,94 @@ new CISmartCrop('#my-viewer', {
 &lt;/div&gt;
 
 &lt;script&gt;CISmartCrop.autoInit();&lt;/script&gt;</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section id="features" class="demo-section demo-section--light">
-      <div class="demo-section-inner">
-        <div class="demo-section-header">
-          <div class="demo-section-label">Features</div>
-          <h2>Everything you need for smart cropping</h2>
-          <p>Drag the focal point and see all crop previews update in real time.</p>
-        </div>
-        <div class="demo-grid">
-          <div class="demo-card">
-            <h3><span class="demo-card-icon">&#127919;</span> Focal Point</h3>
-            <p>Click, drag, or use keyboard arrows to set the center of interest. All crops follow.</p>
-          </div>
-          <div class="demo-card">
-            <h3><span class="demo-card-icon">&#128200;</span> Multi-Preset Preview</h3>
-            <p>See 16:9, 1:1, 9:16, 4:5, OG Image, and custom ratios — all at once.</p>
-          </div>
-          <div class="demo-card">
-            <h3><span class="demo-card-icon">&#128065;</span> Overlay Rectangles</h3>
-            <p>Hover a preview card to see exactly where the crop falls on the original image.</p>
-          </div>
-          <div class="demo-card">
-            <h3><span class="demo-card-icon">&#128229;</span> Export &amp; Download</h3>
-            <p>Export crop coordinates as JSON or download cropped images as PNG, JPEG, or WebP.</p>
-          </div>
-          <div class="demo-card">
-            <h3><span class="demo-card-icon">&#127763;</span> Themes</h3>
-            <p>Light and dark themes with 40+ CSS custom properties for full customization.</p>
-          </div>
-          <div class="demo-card">
-            <h3><span class="demo-card-icon">&#9000;</span> Accessible</h3>
-            <p>Keyboard navigation, ARIA roles &amp; labels, and <code>prefers-reduced-motion</code> support built in.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Embed in Your Project -->
-    <section id="embed" class="demo-section demo-section--light-alt">
-      <div class="demo-section-inner">
-        <div class="demo-section-header">
-          <div class="demo-section-label">Integration</div>
-          <h2>Embed in any project</h2>
-          <p>Add smart crop preview to your e-commerce admin, CMS, or any web application in minutes.</p>
-        </div>
-        <div class="demo-columns">
-          <div class="demo-column demo-card">
-            <div class="demo-feature-header">
-              <div class="demo-feature-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
               </div>
-              <div class="demo-feature-title">E-Commerce / CMS</div>
             </div>
-            <p class="demo-card-desc">Product image editor with focal point — crop previews update live. Use <code>onChange</code> to save crop data to your backend, <code>exportCropBlob()</code> to generate thumbnails client-side.</p>
-            <div class="demo-code-wrap">
-              <div class="demo-code-header"><span class="demo-code-dots"><i></i><i></i><i></i></span><span class="demo-code-lang">JavaScript</span></div>
-              <pre><code class="language-javascript">const cropper = new CISmartCrop('#product-image', {
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="demo-section demo-section--light">
+        <div class="demo-section-inner">
+          <div class="demo-section-header">
+            <div class="demo-section-label">Features</div>
+            <h2>Everything you need for smart cropping</h2>
+            <p>Drag the focal point and see all crop previews update in real time.</p>
+          </div>
+          <div class="demo-grid">
+            <div class="demo-card">
+              <h3><span class="demo-card-icon">&#127919;</span> Focal Point</h3>
+              <p>
+                Click, drag, or use keyboard arrows to set the center of interest. All crops follow.
+              </p>
+            </div>
+            <div class="demo-card">
+              <h3><span class="demo-card-icon">&#128200;</span> Multi-Preset Preview</h3>
+              <p>See 16:9, 1:1, 9:16, 4:5, OG Image, and custom ratios — all at once.</p>
+            </div>
+            <div class="demo-card">
+              <h3><span class="demo-card-icon">&#128065;</span> Overlay Rectangles</h3>
+              <p>Hover a preview card to see exactly where the crop falls on the original image.</p>
+            </div>
+            <div class="demo-card">
+              <h3><span class="demo-card-icon">&#128229;</span> Export &amp; Download</h3>
+              <p>
+                Export crop coordinates as JSON or download cropped images as PNG, JPEG, or WebP.
+              </p>
+            </div>
+            <div class="demo-card">
+              <h3><span class="demo-card-icon">&#127763;</span> Themes</h3>
+              <p>Light and dark themes with 40+ CSS custom properties for full customization.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Embed in Your Project -->
+      <section id="embed" class="demo-section demo-section--light-alt">
+        <div class="demo-section-inner">
+          <div class="demo-section-header">
+            <div class="demo-section-label">Integration</div>
+            <h2>Embed in any project</h2>
+            <p>
+              Add smart crop preview to your e-commerce admin, CMS, or any web application in
+              minutes.
+            </p>
+          </div>
+          <div class="demo-columns">
+            <div class="demo-column demo-card">
+              <div class="demo-feature-header">
+                <div class="demo-feature-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path
+                      d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"
+                    />
+                  </svg>
+                </div>
+                <div class="demo-feature-title">E-Commerce / CMS</div>
+              </div>
+              <p class="demo-card-desc">
+                Product image editor with focal point — crop previews update live. Use
+                <code>onChange</code> to save crop data to your backend,
+                <code>exportCropBlob()</code> to generate thumbnails client-side.
+              </p>
+              <div class="demo-code-wrap">
+                <div class="demo-code-header">
+                  <span class="demo-code-dots"><i></i><i></i><i></i></span
+                  ><span class="demo-code-lang">JavaScript</span>
+                </div>
+                <pre><code class="language-javascript">const cropper = new CISmartCrop('#product-image', {
   src: product.imageUrl,
   presets: [
     { name: 'card', ratio: '4:3', label: 'Product Card' },
@@ -239,19 +390,38 @@ new CISmartCrop('#my-viewer', {
 // Download a specific crop
 const blob = await cropper.exportCropBlob('thumb', 'webp', 0.85);
 uploadToStorage(blob);</code></pre>
-            </div>
-          </div>
-          <div class="demo-column demo-card">
-            <div class="demo-feature-header">
-              <div class="demo-feature-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               </div>
-              <div class="demo-feature-title">React Integration</div>
             </div>
-            <p class="demo-card-desc">First-class React wrapper with props, refs, and hooks. Syncs with your component state automatically.</p>
-            <div class="demo-code-wrap demo-code-wrap--fill">
-              <div class="demo-code-header"><span class="demo-code-dots"><i></i><i></i><i></i></span><span class="demo-code-lang">React / JSX</span></div>
-              <pre><code class="language-jsx">import { CISmartCropViewer } from
+            <div class="demo-column demo-card">
+              <div class="demo-feature-header">
+                <div class="demo-feature-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
+                </div>
+                <div class="demo-feature-title">React Integration</div>
+              </div>
+              <p class="demo-card-desc" style="margin-bottom: 36px">
+                First-class React wrapper with props, refs, and hooks. Syncs with your component
+                state automatically.
+              </p>
+              <div class="demo-code-wrap demo-code-wrap--fill">
+                <div class="demo-code-header">
+                  <span class="demo-code-dots"><i></i><i></i><i></i></span
+                  ><span class="demo-code-lang">React / JSX</span>
+                </div>
+                <pre><code class="language-jsx">import { CISmartCropViewer } from
   'js-cloudimage-smart-crop-preview/react';
 import 'js-cloudimage-smart-crop-preview/css';
 
@@ -277,105 +447,239 @@ function ProductEditor({ imageUrl }) {
     /&gt;
   );
 }</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Export Section -->
+      <section id="export" class="demo-section demo-section--light">
+        <div class="demo-section-inner">
+          <div class="demo-section-header">
+            <div class="demo-section-label">Data Export</div>
+            <h2>Export Crop Coordinates</h2>
+            <p>
+              Get precise pixel-level crop data for every preset. Double-click a preview to download
+              that crop.
+            </p>
+          </div>
+          <div class="demo-export-actions">
+            <button id="export-btn" class="demo-btn demo-btn--primary demo-btn--small">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+              Export JSON
+            </button>
+            <button
+              id="copy-btn"
+              class="demo-btn demo-btn--outline demo-btn--small"
+              style="display: none"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+              </svg>
+              Copy to Clipboard
+            </button>
+          </div>
+          <div class="demo-code-wrap" id="json-output" style="display: none">
+            <div class="demo-code-header">
+              <span class="demo-code-dots"><i></i><i></i><i></i></span
+              ><span class="demo-code-lang">JSON</span>
+            </div>
+            <pre id="json-content"><code class="language-json"></code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Also by Scaleflex -->
+    <section class="demo-also">
+      <div class="demo-also-inner">
+        <div class="demo-section-label" style="color: var(--sf-accent)">Also by Scaleflex</div>
+        <div class="demo-also-grid">
+          <div class="demo-also-card">
+            <h3 class="demo-also-title">
+              js-cloudimage-<span class="demo-gradient-text">before-after</span>
+            </h3>
+            <p class="demo-also-desc">
+              Interactive image comparison slider with zoom &amp; pan, drag/hover/click modes, and
+              full accessibility.
+            </p>
+            <div class="demo-also-actions">
+              <a
+                href="https://scaleflex.github.io/js-cloudimage-before-after/"
+                class="demo-btn demo-btn--primary demo-btn--small"
+                target="_blank"
+                rel="noopener"
+                >Live Demo</a
+              >
+              <a
+                href="https://github.com/scaleflex/js-cloudimage-before-after"
+                class="demo-btn demo-btn--outline demo-btn--small"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </div>
+          </div>
+          <div class="demo-also-card">
+            <h3 class="demo-also-title">
+              js-cloudimage-<span class="demo-gradient-text">360-view</span>
+            </h3>
+            <p class="demo-also-desc">
+              360-degree product viewer with autoplay, zoom, spin animation, and full touch/mouse
+              support.
+            </p>
+            <div class="demo-also-actions">
+              <a
+                href="https://scaleflex.github.io/js-cloudimage-360-view/"
+                class="demo-btn demo-btn--primary demo-btn--small"
+                target="_blank"
+                rel="noopener"
+                >Live Demo</a
+              >
+              <a
+                href="https://github.com/scaleflex/js-cloudimage-360-view"
+                class="demo-btn demo-btn--outline demo-btn--small"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </div>
+          </div>
+          <div class="demo-also-card">
+            <h3 class="demo-also-title">
+              js-cloudimage-<span class="demo-gradient-text">hotspot</span>
+            </h3>
+            <p class="demo-also-desc">
+              Add interactive hotspots to images with tooltips, custom icons, and responsive
+              positioning.
+            </p>
+            <div class="demo-also-actions">
+              <a
+                href="https://scaleflex.github.io/js-cloudimage-hotspot/"
+                class="demo-btn demo-btn--primary demo-btn--small"
+                target="_blank"
+                rel="noopener"
+                >Live Demo</a
+              >
+              <a
+                href="https://github.com/scaleflex/js-cloudimage-hotspot"
+                class="demo-btn demo-btn--outline demo-btn--small"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Export Section -->
-    <section id="export" class="demo-section demo-section--light">
-      <div class="demo-section-inner">
-        <div class="demo-section-header">
-          <div class="demo-section-label">Data Export</div>
-          <h2>Export Crop Coordinates</h2>
-          <p>Get precise pixel-level crop data for every preset. Double-click a preview to download that crop.</p>
+    <!-- Footer -->
+    <footer class="demo-footer">
+      <div class="demo-footer-main">
+        <div class="demo-footer-brand">
+          <a href="https://www.scaleflex.com" target="_blank" rel="noopener">
+            <img
+              src="https://assets.scaleflex.com/Marketing/Logos/Scaleflex%20Logos/Logo%20Horizontal/scaleflex%20logo%20without%20tagline%20white%20text%20%28horizontal%29%20.png?vh=85bc00"
+              alt="Scaleflex"
+              class="demo-footer-logo"
+            />
+          </a>
+          <p>
+            Interactive focal-point crop preview for the modern web. Zero dependencies, fully
+            accessible, endlessly customizable.
+          </p>
         </div>
-        <div class="demo-export-actions">
-          <button id="export-btn" class="demo-btn demo-btn--primary demo-btn--small">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            Export JSON
-          </button>
-          <button id="copy-btn" class="demo-btn demo-btn--outline demo-btn--small" style="display:none;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-            Copy to Clipboard
-          </button>
+        <div class="demo-footer-col">
+          <h4>Resources</h4>
+          <a
+            href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a
+            href="https://www.npmjs.com/package/js-cloudimage-smart-crop-preview"
+            target="_blank"
+            rel="noopener"
+            >npm</a
+          >
+          <a
+            href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview/blob/master/README.md"
+            target="_blank"
+            rel="noopener"
+            >Documentation</a
+          >
         </div>
-        <div class="demo-code-wrap" id="json-output" style="display:none;">
-          <div class="demo-code-header"><span class="demo-code-dots"><i></i><i></i><i></i></span><span class="demo-code-lang">JSON</span></div>
-          <pre id="json-content"><code class="language-json"></code></pre>
+        <div class="demo-footer-col">
+          <h4>Related</h4>
+          <a
+            href="https://scaleflex.github.io/js-cloudimage-before-after/"
+            target="_blank"
+            rel="noopener"
+            >Before/After Slider</a
+          >
+          <a
+            href="https://scaleflex.github.io/js-cloudimage-360-view/"
+            target="_blank"
+            rel="noopener"
+            >360 View</a
+          >
+          <a
+            href="https://scaleflex.github.io/js-cloudimage-hotspot/"
+            target="_blank"
+            rel="noopener"
+            >Hotspot</a
+          >
+        </div>
+        <div class="demo-footer-col">
+          <h4>Support</h4>
+          <a
+            href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview/issues"
+            target="_blank"
+            rel="noopener"
+            >Report an Issue</a
+          >
+          <a href="mailto:hello@cloudimage.io">Contact Us</a>
         </div>
       </div>
-    </section>
-  </main>
+      <div class="demo-footer-bottom">
+        <p>
+          MIT License &mdash; Made with care by the
+          <a href="https://www.scaleflex.com" target="_blank" rel="noopener">Scaleflex</a> team
+          &mdash; Powered by
+          <a href="https://www.cloudimage.io" target="_blank" rel="noopener">Cloudimage.io</a>
+        </p>
+      </div>
+    </footer>
 
-  <!-- Also by Scaleflex -->
-  <section class="demo-also">
-    <div class="demo-also-inner">
-      <div class="demo-section-label" style="color:var(--sf-accent);">Also by Scaleflex</div>
-      <div class="demo-also-grid">
-        <div class="demo-also-card">
-          <h3 class="demo-also-title">js-cloudimage-<span class="demo-gradient-text">before-after</span></h3>
-          <p class="demo-also-desc">Interactive image comparison slider with zoom &amp; pan, drag/hover/click modes, and full accessibility.</p>
-          <div class="demo-also-actions">
-            <a href="https://scaleflex.github.io/js-cloudimage-before-after/" class="demo-btn demo-btn--primary demo-btn--small" target="_blank" rel="noopener">Live Demo</a>
-            <a href="https://github.com/scaleflex/js-cloudimage-before-after" class="demo-btn demo-btn--outline demo-btn--small" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-        <div class="demo-also-card">
-          <h3 class="demo-also-title">js-cloudimage-<span class="demo-gradient-text">360-view</span></h3>
-          <p class="demo-also-desc">360-degree product viewer with autoplay, zoom, spin animation, and full touch/mouse support.</p>
-          <div class="demo-also-actions">
-            <a href="https://scaleflex.github.io/js-cloudimage-360-view/" class="demo-btn demo-btn--primary demo-btn--small" target="_blank" rel="noopener">Live Demo</a>
-            <a href="https://github.com/scaleflex/js-cloudimage-360-view" class="demo-btn demo-btn--outline demo-btn--small" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-        <div class="demo-also-card">
-          <h3 class="demo-also-title">js-cloudimage-<span class="demo-gradient-text">hotspot</span></h3>
-          <p class="demo-also-desc">Add interactive hotspots to images with tooltips, custom icons, and responsive positioning.</p>
-          <div class="demo-also-actions">
-            <a href="https://scaleflex.github.io/js-cloudimage-hotspot/" class="demo-btn demo-btn--primary demo-btn--small" target="_blank" rel="noopener">Live Demo</a>
-            <a href="https://github.com/scaleflex/js-cloudimage-hotspot" class="demo-btn demo-btn--outline demo-btn--small" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="demo-footer">
-    <div class="demo-footer-main">
-      <div class="demo-footer-brand">
-        <a href="https://www.scaleflex.com" target="_blank" rel="noopener">
-          <img src="https://assets.scaleflex.com/Marketing/Logos/Scaleflex%20Logos/Logo%20Horizontal/scaleflex%20logo%20without%20tagline%20white%20text%20%28horizontal%29%20.png?vh=85bc00" alt="Scaleflex" class="demo-footer-logo">
-        </a>
-        <p>Interactive focal-point crop preview for the modern web. Zero dependencies, fully accessible, endlessly customizable.</p>
-      </div>
-      <div class="demo-footer-col">
-        <h4>Resources</h4>
-        <a href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.npmjs.com/package/js-cloudimage-smart-crop-preview" target="_blank" rel="noopener">npm</a>
-        <a href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview/blob/master/README.md" target="_blank" rel="noopener">Documentation</a>
-      </div>
-      <div class="demo-footer-col">
-        <h4>Related</h4>
-        <a href="https://scaleflex.github.io/js-cloudimage-before-after/" target="_blank" rel="noopener">Before/After Slider</a>
-        <a href="https://scaleflex.github.io/js-cloudimage-360-view/" target="_blank" rel="noopener">360 View</a>
-        <a href="https://scaleflex.github.io/js-cloudimage-hotspot/" target="_blank" rel="noopener">Hotspot</a>
-      </div>
-      <div class="demo-footer-col">
-        <h4>Support</h4>
-        <a href="https://github.com/DmytroMusiiko/js-cloudimage-smart-crop-preview/issues" target="_blank" rel="noopener">Report an Issue</a>
-        <a href="mailto:hello@cloudimage.io">Contact Us</a>
-      </div>
-    </div>
-    <div class="demo-footer-bottom">
-      <p>MIT License &mdash; Made with care by the <a href="https://www.scaleflex.com" target="_blank" rel="noopener">Scaleflex</a> team &mdash; Powered by <a href="https://www.cloudimage.io" target="_blank" rel="noopener">Cloudimage.io</a></p>
-    </div>
-  </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-  <script type="module" src="./demo.ts"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script type="module" src="./demo.ts"></script>
+  </body>
 </html>

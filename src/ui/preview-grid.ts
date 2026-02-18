@@ -133,7 +133,10 @@ export class PreviewGrid {
 
   setLayout(mode: 'grid' | 'single'): void {
     this.layout = mode;
-    this.el.classList.remove('ci-smart-crop__preview-grid--grid', 'ci-smart-crop__preview-grid--single');
+    this.el.classList.remove(
+      'ci-smart-crop__preview-grid--grid',
+      'ci-smart-crop__preview-grid--single',
+    );
     this.el.classList.add(`ci-smart-crop__preview-grid--${mode}`);
 
     if (mode === 'single' && !this.tabsEl) {

@@ -498,6 +498,20 @@ a:hover {
   border-bottom: none;
 }
 
+/* Preset pills inside the preview grid */
+.demo-preset-bar--inner {
+  display: flex;
+  flex-wrap: wrap;
+  background: transparent;
+  border: none;
+  padding: 0 0 10px;
+  justify-content: space-between;
+}
+
+.demo-preset-bar--inner .demo-preset-pill {
+  white-space: nowrap;
+}
+
 .demo-preset-pill {
   display: inline-flex;
   align-items: center;
@@ -827,7 +841,6 @@ a:hover {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  margin-top: 20px;
 }
 
 .demo-code-wrap pre {
@@ -907,6 +920,10 @@ a:hover {
   transition:
     border-color var(--sf-transition),
     box-shadow var(--sf-transition);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .demo-input:focus {
@@ -1156,7 +1173,9 @@ a:hover {
   gap: 8px;
   color: #fbbf24 !important;
   opacity: 0.85;
-  transition: opacity var(--sf-transition), color var(--sf-transition);
+  transition:
+    opacity var(--sf-transition),
+    color var(--sf-transition);
 }
 
 .demo-footer-coffee:hover {
@@ -1182,15 +1201,39 @@ a:hover {
   animation: demo-steam 2.2s ease-in-out infinite;
 }
 
-.demo-steam--1 { left: 3px; top: -4px; animation-delay: 0s; }
-.demo-steam--2 { left: 7px; top: -4px; animation-delay: 0.4s; }
-.demo-steam--3 { left: 11px; top: -4px; animation-delay: 0.8s; }
+.demo-steam--1 {
+  left: 3px;
+  top: -4px;
+  animation-delay: 0s;
+}
+.demo-steam--2 {
+  left: 7px;
+  top: -4px;
+  animation-delay: 0.4s;
+}
+.demo-steam--3 {
+  left: 11px;
+  top: -4px;
+  animation-delay: 0.8s;
+}
 
 @keyframes demo-steam {
-  0% { opacity: 0; transform: translateY(0) scaleY(0.5); }
-  30% { opacity: 0.6; transform: translateY(-4px) scaleY(1); }
-  60% { opacity: 0.3; transform: translateY(-8px) scaleX(1.5) scaleY(0.8); }
-  100% { opacity: 0; transform: translateY(-12px) scaleX(2) scaleY(0.3); }
+  0% {
+    opacity: 0;
+    transform: translateY(0) scaleY(0.5);
+  }
+  30% {
+    opacity: 0.6;
+    transform: translateY(-4px) scaleY(1);
+  }
+  60% {
+    opacity: 0.3;
+    transform: translateY(-8px) scaleX(1.5) scaleY(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px) scaleX(2) scaleY(0.3);
+  }
 }
 
 .demo-footer-bottom {

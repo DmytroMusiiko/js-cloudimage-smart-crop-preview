@@ -124,16 +124,16 @@ const cropper = new CISmartCrop('#my-viewer', {
 
 When no `presets` option is provided, these 8 presets are used:
 
-| Name | Ratio | Color |
-|------|-------|-------|
-| `landscape` | 16:9 | `#FF6B6B` |
-| `ultrawide` | 21:9 | `#4ECDC4` |
-| `standard` | 4:3 | `#45B7D1` |
-| `square` | 1:1 | `#96CEB4` |
-| `portrait` | 9:16 | `#FFEAA7` |
-| `social-portrait` | 4:5 | `#DDA0DD` |
-| `og-image` | 1.91:1 | `#98D8C8` |
-| `banner` | 3:1 | `#F7DC6F` |
+| Name | Ratio | Label | Color |
+|------|-------|-------|-------|
+| `landscape` | 16:9 | Landscape 16:9 | `#FF6B6B` |
+| `ultrawide` | 21:9 | Ultrawide 21:9 | `#4ECDC4` |
+| `standard` | 4:3 | Standard 4:3 | `#45B7D1` |
+| `square` | 1:1 | Square 1:1 | `#96CEB4` |
+| `portrait` | 9:16 | Portrait 9:16 | `#FFEAA7` |
+| `social-portrait` | 4:5 | Social Portrait 4:5 | `#DDA0DD` |
+| `og-image` | 1.91:1 | OG Image 1.91:1 | `#98D8C8` |
+| `banner` | 3:1 | Banner 3:1 | `#F7DC6F` |
 
 ---
 
@@ -186,7 +186,7 @@ await cropper.setSrc('https://example.com/another.jpg');
 // JSON with all crop coordinates
 const json = cropper.exportJSON();
 
-// Download a specific crop as image blob
+// Get a specific crop as image blob (PNG, JPEG, or WebP)
 const blob = await cropper.exportCropBlob('square', 'webp', 0.85);
 ```
 
@@ -273,7 +273,7 @@ All [configuration options](#configuration) are supported as props, plus:
 
 ### Ref API
 
-The ref exposes the full [instance API](#instance-methods): `setFocalPoint`, `getFocalPoint`, `getCrops`, `getCrop`, `addPreset`, `removePreset`, `getPresets`, `setLayout`, `setTheme`, `setSrc`, `update`, `exportJSON`, `exportCropBlob`.
+The ref exposes the full [instance API](#instance-methods): `setFocalPoint`, `getFocalPoint`, `getCrops`, `getCrop`, `addPreset`, `removePreset`, `getPresets`, `setLayout`, `setTheme`, `setSrc`, `exportJSON`, `exportCropBlob`.
 
 ### Hook
 
